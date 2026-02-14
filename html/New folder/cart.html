@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | Lamsah Mirror</title>
+    <link rel="stylesheet" href="/style.css">
+    <style>
+        /* --- BRAND PALETTE --- */
+        :root {
+            --bronze: #B37641;
+            --gold: #CB9567;
+            --almond: #CEB7A3;
+            --off-white: #FDFCFB;
+            --white: #FFFFFF;
+            --text-dark: #333333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--off-white);
+            color: var(--text-dark);
+            margin: 0;
+            padding: 0;
+        }
+
+        /* --- CHECKOUT LAYOUT --- */
+        .checkout-page {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .checkout-page h1 {
+            text-align: center;
+            color: var(--bronze);
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+        }
+
+        .checkout-container {
+            display: grid;
+            grid-template-columns: 1fr 350px; /* Main forms on left, Summary on right */
+            gap: 30px;
+            align-items: start;
+        }
+
+        /* --- CARD STYLING --- */
+        .cart-items, .shipping-information, .payment-method, .order-summary {
+            background: var(--white);
+            padding: 25px;
+            border: 1px solid var(--almond);
+            border-radius: 4px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+        }
+
+        h2 {
+            font-size: 1.2rem;
+            border-bottom: 1px solid var(--almond);
+            padding-bottom: 10px;
+            margin-top: 0;
+            color: var(--bronze);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* --- FORMS --- */
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--almond);
+            border-radius: 4px;
+            box-sizing: border-box; /* Crucial for padding */
+            font-size: 1rem;
+        }
+        input:focus {
+            outline: none;
+            border-color: var(--bronze);
+            box-shadow: 0 0 5px rgba(179, 118, 65, 0.2);
+        }
+
+        /* --- ORDER SUMMARY SPECIFICS --- */
+        .order-summary {
+            position: sticky;
+            top: 20px;
+        }
+        .order-summary p {
+            display: flex;
+            justify-content: space-between;
+            margin: 15px 0;
+            font-size: 1.1rem;
+        }
+        #total-price {
+            font-weight: bold;
+            color: var(--bronze);
+            font-size: 1.3rem;
+        }
+
+        /* --- BUTTON --- */
+        .btn-cta {
+            width: 100%;
+            background: var(--bronze);
+            color: white;
+            border: none;
+            padding: 15px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+        .btn-cta:hover {
+            background: var(--gold);
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 850px) {
+            .checkout-container {
+                grid-template-columns: 1fr;
+            }
+            .order-summary {
+                position: static;
+                order: -1; /* Summary moves to top on mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="navbar-container">
+        <a href="index.html" class="navbar-logo">Lamsah Mirror</a>
+        <ul class="navbar-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shop.html">Shop Now</a></li>
+            <li><a href="about.html">About Us</a></li>
+        </ul>
+        <div class="cart-icon-container">
+            <a href="cart.html" class="cart-icon">
+                <img src="/assets/shopping-bag.png" alt="Cart" class="cart-image">
+                <span id="cart-count" class="cart-count">0</span>
+            </a>
+        </div>
+    </div>
+</nav>
+
+<section class="checkout-page">
+    <h1>Checkout</h1>
+
+    <div class="checkout-container">
+        <div class="main-checkout-form">
+            <div class="cart-items">
+                <h2>Your Items</h2>
+                <div id="cart-items">
+                    <p style="color: #888;">Reviewing your selection...</p>
+                </div>
+            </div>
+
+            <div class="shipping-information">
+                <h2>Shipping Information</h2>
+                <form id="shipping-form">
+                    <div class="form-group">
+                        <label for="full-name">Full Name</label>
+                        <input type="text" id="full-name" placeholder="John Doe" required>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                        <div class="form-group">
+                            <label for="city">City</label>
+                            <input type="text" id="city" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="postal-code">Postal Code</label>
+                            <input type="text" id="postal-code" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Full Address</label>
+                        <input type="text" id="address" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="country">Country</label>
+                        <input type="text" id="country" required>
+                    </div>
+                </form>
+            </div>
+
+            <div class="payment-method">
+                <h2>Payment Method</h2>
+                <form id="payment-form">
+                    <div class="form-group">
+                        <label for="credit-card">Credit Card Number</label>
+                        <input type="text" id="credit-card" placeholder="0000 0000 0000 0000" required>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                        <div class="form-group">
+                            <label for="expiry-date">Expiry Date</label>
+                            <input type="text" id="expiry-date" placeholder="MM/YY" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="cvv">CVV</label>
+                            <input type="text" id="cvv" placeholder="123" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-cta">Complete Purchase</button>
+                </form>
+            </div>
+        </div>
+
+        <aside class="order-summary">
+            <h2>Order Summary</h2>
+            <p>Subtotal: <span>PKR<span id="subtotal">0.00</span></span></p>
+            <p>Shipping: <span>PKR<span id="shipping-cost">300</span></span></p>
+            <hr style="border: 0; border-top: 1px solid var(--almond);">
+            <p><strong>Total:</strong> <span>PKR<span id="total-price">0.00</span></span></p>
+            <small style="color: #777; display: block; text-align: center; margin-top: 10px;">
+                Secure Checkout Powered by Lamsah
+            </small>
+        </aside>
+    </div>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>

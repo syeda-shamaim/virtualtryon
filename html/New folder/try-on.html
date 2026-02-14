@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Try On - Virtual Fitting</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<style>
+        /* --- PROFESSIONAL SECTION STYLING --- */
+        :root {
+            --bronze: #B37641;
+            --gold: #CB9567;
+            --almond: #CEB7A3;
+            --white: #FFFFFF;
+            --bg-soft: #FDFCFB;
+        }
+
+        .try-on-studio {
+            padding: 40px 20px;
+            background-color: var(--bg-soft);
+            min-height: 800px;
+        }
+
+        .studio-container {
+            display: grid;
+            grid-template-columns: 320px 1fr 280px;
+            gap: 30px;
+            max-width: 1500px;
+            margin: 0 auto;
+        }
+
+        .panel-label {
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--bronze);
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        /* --- LEFT COLUMN: PRODUCT CARD --- */
+        .product-selection-card {
+            background: var(--white);
+            border: 1px solid var(--almond);
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(179, 118, 65, 0.05);
+        }
+
+        .image-box {
+            width: 100%;
+            height: 400px;
+            background: #f9f9f9;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+
+        .image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-details h4 {
+            margin: 0 0 10px 0;
+            font-family: 'Playfair Display', serif;
+            color: #333;
+        }
+
+        .price-tag {
+            color: var(--bronze);
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        /* --- CART CONTROLS --- */
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            border: 1px solid var(--almond);
+            margin-bottom: 15px;
+            background: #fff;
+        }
+
+        .quantity-selector button {
+            background: none;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            color: var(--bronze);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .quantity-selector input {
+            width: 100%;
+            text-align: center;
+            border: none;
+            outline: none;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .btn-cart-main {
+            width: 100%;
+            background: var(--bronze);
+            color: white;
+            border: none;
+            padding: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-cart-main:hover {
+            background: var(--gold);
+        }
+
+        /* --- CENTER COLUMN: MIRROR --- */
+        .mirror-box {
+            height: 600px;
+            background: var(--white);
+            border: 1px solid var(--almond);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+        }
+
+        .upload-ui { text-align: center; padding: 40px; }
+        .upload-icon-style { font-size: 3rem; color: var(--almond); margin-bottom: 15px; }
+
+        #mirror-result {
+            max-height: 100%;
+            width: auto;
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* --- ACTION BUTTONS --- */
+        .action-bar {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .btn-action {
+            padding: 12px 25px;
+            border: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-save { background: var(--bronze); color: white; }
+        .btn-reset { background: var(--almond); color: var(--bronze); }
+        .btn-remove { background: #f4f4f4; color: #888; }
+        .btn-action:disabled { opacity: 0.3; cursor: not-allowed; }
+
+        /* --- RIGHT COLUMN: HISTORY --- */
+        .history-column {
+            height: 600px;
+            background: var(--white);
+            border: 1px solid var(--almond);
+            padding: 15px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .history-item {
+            width: 100%;
+            border: 1px solid var(--almond);
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+
+        .empty-msg {
+            color: var(--almond);
+            text-align: center;
+            margin-top: 50%;
+            font-style: italic;
+        }
+
+        /* --- LOADER --- */
+        .spinner {
+            width: 50px; height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid var(--bronze);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            display: none;
+        }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .studio-container { grid-template-columns: 1fr; }
+            .studio-column { margin-bottom: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+<section class="try-on-studio">
+    <div class="studio-container">
+        
+        <div class="studio-column">
+            <span class="panel-label">Selected Item</span>
+            <div class="product-selection-card">
+                <div class="image-box">
+                    <img id="product-to-try" src="placeholder.jpg" alt="Selected Item">
+                </div>
+                <div class="product-details">
+                    <h4 id="product-name">Product Name</h4>
+                    <p class="price-tag">$<span id="unit-price">0.00</span></p>
+                    
+                    <div class="cart-controls">
+                        <div class="quantity-selector">
+                            <button onclick="changeQty(-1)">−</button>
+                            <input type="number" id="item-qty" value="1" readonly>
+                            <button onclick="changeQty(1)">+</button>
+                        </div>
+                        <button class="btn-cart-main" onclick="addToCart()">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="studio-column">
+            <span class="panel-label">Virtual Mirror</span>
+            <div class="mirror-box">
+                <div id="upload-ui" class="upload-ui">
+                    <div class="upload-icon-style">⊕</div>
+                    <h3>Upload Your Portrait</h3>
+                    <p>Standard JPG/PNG portraits work best</p>
+                    <button class="btn-cart-main" style="width: auto; padding: 12px 30px;" onclick="document.getElementById('file-input').click()">Choose Photo</button>
+                    <input type="file" id="file-input" hidden accept="image/*">
+                </div>
+
+                <div id="loader" class="spinner"></div>
+                <img id="mirror-result" src="" alt="Fit Result">
+            </div>
+            
+            <div class="action-bar">
+                <button id="save-btn" class="btn-action btn-save" onclick="saveToHistory()" disabled>Save to History</button>
+                <button id="reset-btn" class="btn-action btn-reset" onclick="resetStudio()" disabled>Reset</button>
+                <button id="remove-btn" class="btn-action btn-remove" onclick="removeProcess()" disabled>Remove</button>
+            </div>
+        </div>
+
+        <div class="studio-column">
+            <span class="panel-label">Recent Tries</span>
+            <div id="recent-list" class="history-column">
+                <div class="empty-msg">No items saved yet</div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<script>
+    // 1. QUANTITY SELECTOR
+    function changeQty(val) {
+        let qtyInput = document.getElementById('item-qty');
+        let currentVal = parseInt(qtyInput.value);
+        let newVal = currentVal + val;
+        if (newVal >= 1) qtyInput.value = newVal;
+    }
+
+    // 2. GET PRODUCT DATA FROM URL
+    window.onload = function() {
+        const params = new URLSearchParams(window.location.search);
+        const dressImg = params.get('dress');
+        const dressName = params.get('name');
+        
+        if(dressImg) {
+            document.getElementById('product-to-try').src = "/assets/" + dressImg;
+            document.getElementById('product-name').innerText = decodeURIComponent(dressName || "Selected Item");
+        }
+    }
+
+    // 3. FILE UPLOAD & PROCESSING
+    const fileInput = document.getElementById('file-input');
+    const mirrorImg = document.getElementById('mirror-result');
+    const uploadUI = document.getElementById('upload-ui');
+    const loader = document.getElementById('loader');
+
+    fileInput.onchange = function(e) {
+        const file = e.target.files[0];
+        if(file) {
+            uploadUI.style.display = 'none';
+            loader.style.display = 'block';
+            
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                // Simulate AI Analysis Delay
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                    mirrorImg.src = event.target.result;
+                    mirrorImg.style.display = 'block';
+                    
+                    // Enable State Buttons
+                    document.getElementById('save-btn').disabled = false;
+                    document.getElementById('reset-btn').disabled = false;
+                    document.getElementById('remove-btn').disabled = false;
+                }, 1500);
+            };
+            reader.readAsDataURL(file);
+        }
+    }
+
+    // 4. SAVE TO HISTORY
+    function saveToHistory() {
+        const list = document.getElementById('recent-list');
+        const emptyMsg = list.querySelector('.empty-msg');
+        if(emptyMsg) emptyMsg.remove();
+
+        const img = document.createElement('img');
+        img.src = mirrorImg.src;
+        img.className = 'history-item';
+        list.prepend(img);
+    }
+
+    // 5. REMOVE / RESET
+    function removeProcess() {
+        mirrorImg.style.display = 'none';
+        uploadUI.style.display = 'block';
+        document.querySelectorAll('.btn-action').forEach(btn => btn.disabled = true);
+        fileInput.value = "";
+    }
+
+    function resetStudio() {
+        loader.style.display = 'block';
+        mirrorImg.style.opacity = '0.3';
+        setTimeout(() => {
+            loader.style.display = 'none';
+            mirrorImg.style.opacity = '1';
+        }, 800);
+    }
+
+    // 6. ADD TO CART LOGIC
+    function addToCart() {
+        const qty = parseInt(document.getElementById('item-qty').value);
+        const cartCount = document.getElementById('cart-count'); // Assuming you have this ID in your nav
+        
+        if(cartCount) {
+            let current = parseInt(cartCount.innerText) || 0;
+            cartCount.innerText = current + qty;
+        }
+        
+        alert(`Successfully added ${qty} item(s) to your cart.`);
+    }
+</script>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Lamsah Mirror</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="navbar-container">
+        <a href="index.html" class="navbar-logo">Lamsah Mirror</a>
+        <ul class="navbar-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shop.html">Shop Now</a></li>
+            <li><a href="about.html">About Us</a></li>
+        </ul>
+        <div class="cart-icon-container">
+            <a href="cart.html" class="cart-icon">
+                <img src="/assets/shopping-bag.png" alt="Cart" class="cart-image">
+                <span id="cart-count" class="cart-count">0</span>
+            </a>
+             <!-- Hamburger -->
+    <div class="menu-toggle" id="menuToggle">☰</div>
+    </div>
+</nav>
+
+
+<!-- HERO -->
+<section class="hero">
+
+  <!-- LEFT SIDE -->
+  <div class="hero-left">
+    <small class="collection">Elegant Collection</small>
+
+    <h2>
+      Timeless fashion,<br>
+      made for you!
+    </h2>
+
+    <p>
+      Where each piece is a blend of classic elegance and modern style,
+      crafted to reflect your unique identity
+    </p>
+
+    <button class="cta" onclick="window.location.href='shop.html'">Shop Now</button>
+
+    
+  </div>
+
+  <!-- RIGHT SIDE -->
+  <div class="hero-right">
+    <div class="circle-image">
+      <img src="/assets/hero1.png" alt="">
+    </div>
+
+    <p class="right-text">
+      Explore endless styles and virtually try them on from the comfort
+      of your home, finding your perfect fit with just a few clicks.
+    </p>
+  </div>
+
+</section>
+ <section class="personal-style">
+    <h1>Your Personal Style</h1>
+    <div class="style-cards">
+      <div class="style-card">
+        <img src="/assets/style3.png" alt="Outfit 1">
+      </div>
+      <div class="style-card">
+        <img src="/assets/style1.png" alt="Outfit 2">
+      </div>
+      <div class="style-card">
+        <img src="/assets/style2.png" alt="Outfit 3">
+      </div>
+    </div>
+  </section>
+
+<section class="feature-section">
+        <div class="intro">
+            <h1>See the Transformation Instantly</h1>
+            <p>Upload a photo and watch as AI fits your chosen outfit perfectly. Experience the future of online shopping.</p>
+    
+        </div>
+        <div class="steps">
+            <h2>How It Works</h2>
+            <p>Three simple steps to see yourself in any outfit</p>
+            <div class="step-cards">
+                <div class="card">
+                    <img src="/assets/imageupload.jpg" alt="Upload Photo">
+                    <h3>Upload Photo</h3>
+                    <p>Upload a clear photo of yourself or use your camera.</p>
+                </div>
+                <div class="card">
+                    <img src="/assets/outfit.jpg" alt="Choose Outfit">
+                    <h3>Choose Outfit</h3>
+                    <p>Browse and select from our stunning collection.</p>
+                </div>
+                <div class="card">
+                    <img src="/assets/AIFIT.jpg" alt="AI Fits It On You">
+                    <h3>AI Fits It On You</h3>
+                    <p>Watch as AI instantly applies the outfit to your photo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+<section class="collection-section">
+  <h1>Explore Our Collection</h1>
+  <p>Choose from our curated selection of outfits and see how they look on you instantly</p>
+  <div class="cards-container">
+
+    <div class="card">
+      <div class="image">
+        <img src="/assets/BlackDress.png" alt="Elegant Black Evening Dress">
+      </div>
+      <div class="card-info">
+        <h3>Elegant Black Evening Dress</h3>
+        <p>20000PKR</p>
+      </div>
+      <div class="buttons">
+        <a href="try-on.html?dress=BlackDress.png" class="cta-btn try-now">Try Now</a>
+        <button class="cta-btn add-to-cart" onclick="addToCart('Elegant Black Evening Dress', 3299)">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="image">
+        <img src="/assets/kurti2.png" alt="Casual Chic Everyday Wear">
+      </div>
+      <div class="card-info">
+        <h3>Casual Chic Everyday Wear</h3>
+        <p>3299PKR</p>
+      </div>
+      <div class="buttons">
+        <a href="try-on.html?dress=kurti2.png" class="cta-btn try-now">Try Now</a>
+        <button class="cta-btn add-to-cart" onclick="addToCart('Casual Chic Everyday Wear', 3299)">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="image">
+        <img src="/assets/greysuit.png" alt="Executive Business Suit">
+      </div>
+      <div class="card-info">
+        <h3>Executive Business Suit</h3>
+        <p>32999PKR</p>
+      </div>
+      <div class="buttons">
+        <a href="try-on.html?dress=greysuit.png" class="cta-btn try-now">Try Now</a>
+        <button class="cta-btn add-to-cart" onclick="addToCart('Executive Business Suit', 3299)">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="image">
+        <img src="/assets/kurti4.png" alt="Floral Summer Kurti">
+      </div>
+      <div class="card-info">
+        <h3>Floral Summer Kurti</h3>
+        <p>3299PKR</p>
+      </div>
+      <div class="buttons">
+        <a href="try-on.html?dress=kurti4.png" class="cta-btn try-now">Try Now</a>
+        <button class="cta-btn add-to-cart" onclick="addToCart('Floral Summer Kurti', 3299)">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="image">
+        <img src="/assets/sari.png" alt="Indian Sari">
+      </div>
+      <div class="card-info">
+        <h3>Indian Sari</h3>
+        <p>35000PKR</p>
+      </div>
+      <div class="buttons">
+        <a href="try-on.html?dress=sari.png" class="cta-btn try-now">Try Now</a>
+        <button class="cta-btn add-to-cart" onclick="addToCart('Indian Sari', 35000)">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="image">
+        <img src="/assets/hero.png" alt="Party Wear Dress">
+      </div>
+      <div class="card-info">
+        <h3>Party Wear Dress</h3>
+        <p>3299PKR</p>
+      </div>
+      <div class="buttons">
+        <a href="try-on.html?dress=hero.png" class="cta-btn try-now">Try Now</a>
+        <button class="cta-btn add-to-cart" onclick="addToCart('Party Wear Dress', 3299)">Add to Cart</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+    <section class="about-us">
+  <div class="about-us-container">
+    <!-- About Us Text (50% width) -->
+    <div class="about-us-text">
+      <h1>About Us</h1>
+      <p>At Lamsah Mirror, we’re revolutionizing online shopping with cutting-edge AI technology. Our mission is to bring you the most personalized, accurate, and efficient virtual fitting experience, ensuring that every outfit fits perfectly.</p>
+      <p>Our AI-powered platform allows you to try on outfits in real-time, making the shopping process smoother, faster, and more enjoyable. Say goodbye to the uncertainty of online shopping and hello to your perfect fit, every time!</p>
+    </div>
+    
+    <!-- About Us Image (50% width) -->
+    <div class="about-us-image">
+      <img src="/assets/aboutpage.jpg" alt="About Us Image">
+    </div>
+  </div>
+</section>
+<section class="reviews-section">
+  <h1>What Our Customers Say</h1>
+  <div class="reviews-container">
+    <div class="review-card">
+      <p>"The AI feature is amazing! I can see how clothes will look on me before purchasing!"</p>
+      <h3>John Doe</h3>
+      <p>Verified Buyer</p>
+    </div>
+    <div class="review-card">
+      <p>"I love the quality of the outfits, and the fit was perfect thanks to the virtual try-on!"</p>
+      <h3>Jane Smith</h3>
+      <p>Verified Buyer</p>
+    </div>
+    <!-- Add more review cards as needed -->
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-top">
+      <div class="footer-logo">
+        <h3>Lamsah Mirror</h3>
+        <p>Your AI-powered virtual try-on solution for the perfect fit, every time.</p>
+      </div>
+      
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#shop-now">Shop Now</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-social">
+        <h4>Follow Us</h4>
+        <div class="social-icons">
+          <a href="#" class="social-icon">FB</a>
+          <a href="#" class="social-icon">IG</a>
+          <a href="#" class="social-icon">TW</a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2026 Lamsah Mirror. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="scripts.js"></script>
+</body>
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop Now</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<nav class="navbar">
+    <div class="navbar-container">
+        <a href="index.html" class="navbar-logo">Lamsah Mirror</a>
+        <ul class="navbar-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shop.html">Shop Now</a></li>
+            <li><a href="about.html">About Us</a></li>
+        </ul>
+        <div class="cart-icon-container">
+            <a href="cart.html" class="cart-icon">
+                <img src="/assets/shopping-bag.png" alt="Cart" class="cart-image">
+                <span id="cart-count" class="cart-count">0</span>
+            </a>
+        </div>
+    </div>
+</nav>
+
+
+<!-- Shop Page Section -->
+<section class="shop-page">
+  <h1>Shop Our Collection</h1>
+
+  <!-- Formal Wear Section -->
+  <div class="category-section" id="formal-wear">
+    <h2>Formal Wear</h2>
+    <div class="cards-container">
+      <div class="card">
+        <img src="/assets/white.png" alt="Formal Dress 1">
+        <h3>Elegant White Suit</h3>
+        <p>Price: $129.99</p>
+        <div class="buttons">
+          <!-- Try Now button (direct link to try-on.html with product info in the URL) -->
+          <a href="try-on.html?dress=white.png" class="btn-cta try-now">Try Now</a>
+          <a href="javascript:void(0);" class="btn-cta add-to-cart" onclick="addToCart('Elegant Black Suit', 129.99)">Add to Cart</a>
+        </div>
+      </div>
+      <div class="card">
+        <img src="/assets/NavyBlazer.png" alt="Formal Dress 2">
+        <h3>Classic Navy Blazer</h3>
+        <p>Price: $149.99</p>
+        <div class="buttons">
+          <!-- Try Now button -->
+          <a href="try-on.html?dress=NavyBlazer.png" class="btn-cta try-now">Try Now</a>
+          <a href="javascript:void(0);" class="btn-cta add-to-cart" onclick="addToCart('Classic Navy Blazer', 149.99)">Add to Cart</a>
+        </div>
+      </div>
+      <div class="card">
+        <img src="/assets/greysuit.png" alt="Formal Dress 3">
+        <h3>Grey Business Suit</h3>
+        <p>Price: $169.99</p>
+        <div class="buttons">
+          <!-- Try Now button -->
+          <a href="try-on.html?dress=greysuit.png" class="btn-cta try-now">Try Now</a>
+          <a href="javascript:void(0);" class="btn-cta add-to-cart" onclick="addToCart('Grey Business Suit', 169.99)">Add to Cart</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Party Wear Section -->
+  <div class="category-section" id="party-wear">
+    <h2>Party Wear</h2>
+    <div class="cards-container">
+      <div class="card">
+        <img src="/assets/hero.png" alt="Party Dress 1">
+        <h3>Red Satin Dress</h3>
+        <p>Price: 8999PKR</p>
+        <div class="buttons">
+          <a href="try-on.html?dress=hero.png" class="btn-cta try-now">Try Now</a>
+          <a href="javascript:void(0);" class="btn-cta add-to-cart" onclick="addToCart('Red Satin Dress', 89.99)">Add to Cart</a>
+        </div>
+      </div>
+      <div class="card">
+        <img src="/assets/BlackDress.png" alt="Party Dress 2">
+        <h3>Black Sequin Dress</h3>
+        <p>Price: 10999PKR</p>
+        <div class="buttons">
+          <a href="try-on.html?dress=BlackDress.png" class="btn-cta try-now">Try Now</a>
+          <a href="javascript:void(0);" class="btn-cta add-to-cart" onclick="addToCart('Black Sequin Dress', 109.99)">Add to Cart</a>
+        </div>
+      </div>
+      <div class="card">
+        <img src="/assets/gold.png" alt="Party Dress 3">
+        <h3>Gold Party Gown</h3>
+        <p>Price: 12999PKR</p>
+        <div class="buttons">
+          <a href="try-on.html?dress=gold.png" class="btn-cta try-now">Try Now</a>
+          <a href="javascript:void(0);" class="btn-cta add-to-cart" onclick="addToCart('Gold Party Gown', 129.99)">Add to Cart</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Casual Wear Section -->
+  <div class="category-section" id="casual-wear">
+    <h2>Casual Wear</h2>
+    <div class="cards-container">
+      <div class="card">
+        <img src="/assets/kurti1.png" alt="Casual Wear 1">
+        <h3>Embroidered Kurti</h3>
+        <p>Price: 3299PKR</p>
+        <div class="buttons">
+          <a href="try-on.html?dress=kurti1.png" class="btn-cta try-now">Try Now</a>
+          <a href="javascript:void(0);" class="btn-cta add-to-cart" onclick="addToCart('Denim Jacket', 59.99)">Add to Cart</a>
+        </div>
+      </div>
+      <div class="card">
+        <img src="/assets/kurti2.png" alt="Casual Wear 2">
+        <h3>Simple Cotton Kurti</h3>
+        <p>Price: 1299PKR</p>
+        <div class="buttons">
+          <a href="try-on.html?dress=kurti2.png" class="btn-cta try-now">Try Now</a>
+          <a href="javascript:void(0);" class="btn-cta add-to-cart" onclick="addToCart('Basic White T-Shirt', 19.99)">Add to Cart</a>
+        </div>
+      </div>
+      <div class="card">
+        <img src="/assets/kurti3.png" alt="Casual Wear 3">
+        <h3>Casual Cotton Kurti</h3>
+        <p>Price: 1999PKR</p>
+        <div class="buttons">
+          <a href="try-on.html?dress=kurti3.png" class="btn-cta try-now">Try Now</a>
+          <a href="javascript:void(0);" class="btn-cta add-to-cart" onclick="addToCart('Casual Shorts', 29.99)">Add to Cart</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Fancy Wear Section -->
+  <div class="category-section" id="fancy-wear">
+    <h2>Fancy Wear</h2>
+    <div class="cards-container">
+      <div class="card">
+        <img src="/assets/sari.png" alt="Fancy Dress 1">
+        <h3>Designer Sari</h3>
+        <p>Price: 35999PKR</p>
+        <div class="buttons">
+          <a href="try-on.html?dress=sari.png" class="btn-cta try-now">Try Now</a>
+          <a href="javascript:void(0);" class="btn-cta add-to-cart" onclick="addToCart('Luxury Evening Gown', 199.99)">Add to Cart</a>
+        </div>
+      </div>
+      <div class="card">
+        <img src="/assets/lehnga.png" alt="Fancy Dress 2">
+        <h3>Bridal Lehenga</h3>
+        <p>Price: 68999PKR</p>
+        <div class="buttons">
+          <a href="try-on.html?dress=lehnga.png" class="btn-cta try-now">Try Now</a>
+          <a href="javascript:void(0);" class="btn-cta add-to-cart" onclick="addToCart('Bridal Lehenga', 179.99)">Add to Cart</a>
+        </div>
+      </div>
+      <div class="card">
+        <img src="/assets/gharara.png" alt="Fancy Dress 3">
+        <h3>Crystal Embellished Dress</h3>
+        <p>Price: 55999PKR</p>
+        <div class="buttons">
+          <a href="try-on.html?dress=gharara.png" class="btn-cta try-now">Try Now</a>
+          <a href="javascript:void(0);" class="btn-cta add-to-cart" onclick="addToCart('Crystal Embellished Dress', 249.99)">Add to Cart</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-top">
+      <div class="footer-logo">
+        <h3>Lamsah Mirror</h3>
+        <p>Your AI-powered virtual try-on solution for the perfect fit, every time.</p>
+      </div>
+      
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#shop-now">Shop Now</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-social">
+        <h4>Follow Us</h4>
+        <div class="social-icons">
+          <a href="#" class="social-icon">FB</a>
+          <a href="#" class="social-icon">IG</a>
+          <a href="#" class="social-icon">TW</a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2026 Lamsah Mirror. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
